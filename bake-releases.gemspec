@@ -16,6 +16,8 @@ Gem::Specification.new do |spec|
 	spec.homepage = "https://github.com/ioquatix/bake-releases"
 	
 	spec.metadata = {
+		"bug_tracker_uri" => "https://github.com/ioquatix/bake-releases/issues",
+		"changelog_uri" => "https://github.com/ioquatix/bake-releases/blob/main/releases.md",
 		"documentation_uri" => "https://ioquatix.github.io/bake-releases/",
 		"funding_uri" => "https://github.com/sponsors/ioquatix/",
 		"source_code_uri" => "https://github.com/ioquatix/bake-releases.git",
