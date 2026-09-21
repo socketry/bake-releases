@@ -44,6 +44,27 @@ end
 
 When you release your gem using `bake gem:release`, the "Unreleased" section will automatically be renamed to the version number (e.g., `## v1.2.3`).
 
+### Reading Release Notes
+
+Release automation can extract the notes for a specific version without creating a GitHub release:
+
+```ruby
+require "bake/releases"
+
+notes = Bake::Releases.notes("v1.2.3", path: "releases.md")
+```
+
+The tag must match the heading in the document, including the `v` prefix. The method returns Markdown without that heading and promotes nested headings relative to it. It returns `nil` when the file, heading, or section content is missing. It does not modify the file. The default path is `releases.md` in the current working directory; pass an explicit path to read from another checkout.
+
+The `releases:notes` Bake task returns the same Markdown string and uses `releases.md` in the project root by default:
+
+```bash
+$ bundle exec bake releases:notes v1.2.3
+$ bundle exec bake releases:notes v1.2.3 path=changes.md
+```
+
+When publishing or retrying a release, select its exact version and read from the release commit's checkout. The existing `releases:github:release` task uses the same API to populate GitHub release notes.
+
 ## Best Practices for Release Notes
 
 ### Format Guidelines
