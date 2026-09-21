@@ -1,6 +1,6 @@
 # Releases
 
-## Unreleased
+## v0.6.0
 
   - Extract release notes without publishing using `Bake::Releases.notes` or the `releases:notes` Bake task.
 

@@ -2,7 +2,9 @@
 
 Please see the [project releases](https://ioquatix.github.io/bake-releases/releases/index) for all releases.
 
-[![Development Status](https://github.com/ioquatix/bake-changes/workflows/Test/badge.svg)](https://github.com/ioquatix/bake-changes/actions?workflow=Test)
+### v0.6.0
+
+  - Extract release notes without publishing using `Bake::Releases.notes` or the `releases:notes` Bake task.
 
 ### v0.5.4
 
@@ -40,7 +42,3 @@ Please see the [project releases](https://ioquatix.github.io/bake-releases/relea
 ### v0.1.0
 
   - Initial implementation.
-
-## Releases
-
-There are no documented releases.
