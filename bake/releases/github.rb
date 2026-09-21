@@ -14,7 +14,7 @@ def release(tag)
 	require "tempfile"
 	
 	repo = github_repo
-	notes = release_notes(tag.to_s)
+	notes = context["releases:notes"].call(tag.to_s)
 	
 	Tempfile.create(["release-notes", ".md"]) do |file|
 		file.write(notes || "")
@@ -46,36 +46,4 @@ def github_repo
 	raise "URI does not appear to be a GitHub repository: #{source_uri}" unless match
 	
 	match[:repo]
-end
-
-def release_notes(tag, path = File.join(context.root, "releases.md"))
-	return nil unless File.exist?(path)
-	
-	require "markly"
-	document = Markly.parse(File.read(path))
-	
-	header = document.find_header(tag)
-	return nil unless header
-	
-	fragment = Markly::Node.new(:document)
-	node = header.next
-	while node
-		break if node.type == :header && node.header_level <= header.header_level
-		next_node = node.next
-		fragment.append_child(node)
-		node = next_node
-	end
-	
-	return nil unless fragment.first_child
-	
-	offset = header.header_level - 1
-	if offset > 0
-		fragment.walk do |node|
-			if node.type == :header
-				node.header_level -= offset
-			end
-		end
-	end
-
-	fragment.to_markdown
 end

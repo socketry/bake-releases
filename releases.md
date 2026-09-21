@@ -1,5 +1,9 @@
 # Releases
 
+## Unreleased
+
+  - Extract release notes without publishing using `Bake::Releases.notes` or the `releases:notes` Bake task.
+
 ## v0.5.4
 
   - Fix ambiguous constant name `Gem::Specification` -\> `::Gem::Specification`.

@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2024-2025, by Samuel Williams.
+# Copyright, 2024-2026, by Samuel Williams.
+
+# Extract the Markdown notes for a release without publishing it.
+#
+# @parameter tag [String] The exact release heading, e.g. "v1.2.3".
+# @parameter path [String] The releases document. Defaults to releases.md in the project root.
+# @returns [String | Nil] The release notes, or nil if no notes exist.
+def notes(tag, path: self.releases_path)
+	require_relative "../lib/bake/releases"
+	
+	Bake::Releases.notes(tag, path: path)
+end
 
 # Update the 'Unreleased' section of the releases document with the given version number, if it exists.
 #
